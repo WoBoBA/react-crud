@@ -12,10 +12,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Avatar from "@mui/material/Avatar";
-import Link from "@mui/material/Link";
 import { ButtonGroup } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import Navbar from "./Navbar";
 
 export default function Users() {
   const [error, setError] = useState(null);
@@ -62,6 +62,7 @@ export default function Users() {
         alert(result["message"]);
         if (result["status"] === "ok") {
           UserGet();
+          localStorage.removeItem("token");
         }
       })
       .catch((error) => console.log("error", error));
@@ -78,6 +79,7 @@ export default function Users() {
   } else {
     return (
       <React.Fragment>
+        <Navbar />
         <CssBaseline />
         <Container maxWidth="lg" sx={{ p: 2 }}>
           <Paper sx={{ p: 2 }}>
@@ -87,11 +89,11 @@ export default function Users() {
                   Users
                 </Typography>
               </Box>
-              <Box>
+              {/*              <Box>
                 <Link href="/create">
                   <Button variant="contained">Create</Button>
                 </Link>
-              </Box>
+              </Box> */}
             </Box>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -127,10 +129,16 @@ export default function Users() {
                           variant="outlined"
                           aria-label="outlined button group"
                         >
-                          <Button onClick={() => UserUpdate(item.id)} startIcon={<EditIcon />}>
+                          <Button
+                            onClick={() => UserUpdate(item.id)}
+                            startIcon={<EditIcon />}
+                          >
                             Edit
                           </Button>
-                          <Button onClick={() => UserDelete(item.id)} startIcon={<DeleteIcon />}>
+                          <Button
+                            onClick={() => UserDelete(item.id)}
+                            startIcon={<DeleteIcon />}
+                          >
                             Delete
                           </Button>
                         </ButtonGroup>

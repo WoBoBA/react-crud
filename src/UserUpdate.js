@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { Button, TextField, Typography, Grid } from "@mui/material";
+import Navbar from "./Navbar";
 
 export default function UserUpdate() {
   const { id } = useParams();
@@ -52,7 +53,7 @@ export default function UserUpdate() {
       .then((result) => {
         alert(result["message"]);
         if (result["status"] === "ok") {
-          window.location.href = "/";
+          window.location.href = "/user";
         }
       })
       .catch((error) => console.log("error", error));
@@ -64,6 +65,7 @@ export default function UserUpdate() {
   const [avatar, setAvatar] = useState("");
   return (
     <React.Fragment>
+      <Navbar />
       <CssBaseline />
       <Container maxWidth="sm" sx={{ p: 2 }}>
         <Typography variant="h6" gutterBottom component="div">

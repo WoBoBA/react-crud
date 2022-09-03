@@ -13,6 +13,7 @@ export default function UsersCreate() {
       fname: fname,
       lname: lname,
       username: username,
+      password: password,
       email: email,
       avatar: avatar,
     });
@@ -39,6 +40,7 @@ export default function UsersCreate() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <React.Fragment>
       <CssBaseline />
@@ -66,6 +68,17 @@ export default function UsersCreate() {
                 fullWidth
                 required
                 onChange={(e) => setLname(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="password"
+                label="Password"
+                variant="outlined"
+                type="password"
+                fullWidth
+                required
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
